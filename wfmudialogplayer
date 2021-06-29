@@ -1,0 +1,465 @@
+#!/bin/bash
+
+#This is a cut and paste job.. couldn't have happened without bugswriter. Modify and use any which way. See https://www.youtube.com/watch?v=0MuXiRQO1ck for the exact code stolen.
+
+#Your mpv keybinds apply. By default pressing "Enter" once playing will go to the show's previous week's archive if it exists. Needs mpv and dialog to work. Other than that all the work is done by WFMU!
+
+HEIGHT=25
+WIDTH=60
+CHOICE_HEIGHT=4
+BACKTITLE="WooFMU"
+TITLE="  W -- F -- M -- U  "
+MENU="Stream & Archives:"  
+
+OPTIONS=(00 "Wfmu Live Stream (Best Quality)"
+         01 "Wfmu Live Stream (Next-Best Quality)"
+         02 "Wfmu Live Stream (32k Mono)"
+	 03 "Rock'n'Soul Radio (Live)"
+	 04 "Give the Drummer Radio (Live)"
+	 05 "Sheena's Jungle Room (Live)"
+         10 "Wake'n'Bake (Mon to Fri)"
+         11 "Surface Noise (Monday)"
+         12 "Three Chord Monte (Monday)"
+         13 "Jim Price (Monday)"
+         14 "Radio Raviolli (Monday)"
+         15 "Techtonic (Monday)"
+         16 "Do or DIY (Monday)"
+         17 "The Blind Tourist (Monday)"
+         18 "The Frow Show (Monday)"
+         19 "Zoe (Monday)"
+         110 "Polygot (Monday)"
+         20 "Garbage Time (Tuesday)" 
+         21 "Feelings (Tuesday)"
+         22 "Spin Age Blasters (Tuesday)"
+         23 "Music of Mind Control (Tuesday)"
+         24 "Old Codger (Tuesday)"
+         25 "Morricone Island (Tuesday)"
+         26 "Ira (Tuesday)"
+         27 "DotDash Radio (Tuesday)"
+         28 "Travel Zone (Tuesday)"
+         30 "Ken (Wednesday)"
+         31 "The Duane Train (Wednesday)"
+         32 "Scott Williams (Wednesday)"
+         33 "The Fuzzy Glove Hour (Wednesday)"
+         34 "Weekly World Blues (Wednesday)"
+         35 "Honky Tonk Radio Girl (Wednesday)"
+         36 "Therese (Wednesday)"
+         37 "Nickel & Dime Radio (Wednesday)"
+         40 "This is the Modern World (Thursday)"
+         41 "Pseu's Thing with a Hook (Thursday)"
+         42 "Strength Through Failure (Thursday)"
+         43 "Mahogany (Thursday)"
+         44 "Miracle Nutrition (Thursday)"
+         45 "Sinner's Crossroads (Thursday)"
+         46 "Music to Spazz By (Thursday)"
+         47 "Mona After Midnight (Thursday)"
+         48 "Radio Activity (Thursday)"
+         50 "JA in the AM (Friday)"
+         51 "Bryce (Friday)"
+         52 "Sophisticated Boom Boom (Friday)"
+         53 "Dance with Mr. Stanley (Friday)"
+         54 "Put the Needle on the Record (Friday)"
+         55 "Downtown Soulville (Friday)"
+         56 "New York Underground (Friday)"
+         57 "Inflatable Squirrel Carcass (Friday)"
+         58 "Sunrise Lamentations (Friday)"
+         60 "Bad Animals (Saturday)"
+         61 "Double-Dip Recess (Saturday)"
+         62 "Michael Shelley (Saturday)"
+         63 "Fool's Paradise (Saturday)"
+         64 "Todd-o-phonic Todd (Saturday)"
+         65 "Transpacific Sound Paradise (Saturday)"
+         66 "Martey McSorley (Saturday)"
+         67 "Darren (Saturday)"
+         68 "Currents (Saturday)"
+         70 "Serious Moonlight Sonatas (Sunday)"
+         71 "Reggae Schoolroom (Sunday)"
+         72 "The Glen Jones Radio Proggramme (Sunday)"
+         73 "Rock and Roller Derby (Sunday)"
+         74 "Radio Row (Sunday)"
+         75 "Daniel Blumin (Sunday)"
+         76 "Gaylord Fields (Sunday)"
+         77 "Smiling in Stereo (Sunday)"
+         78 "Spectrum Audio (Sunday)"
+         79 "Six Degrees (Sunday)"
+         80 "100% Whatever (Misc)"
+         82 "A440/Stochastic Hit Parade (Misc)"
+         86 "Are We There Yet? (Misc)"
+         88 "Bed Time Stories (Misc)"
+         812 "Burn it Down (Misc)"
+         813 "Depravity's Rainbow with Therese and Mike (Misc)"
+         815 "Destination: OUT (Misc)"
+         816 "The Evan 'Funk' Davies Show  (Misc)"
+         817 "I'm Sorry I Had To Kill That Guy (Misc)"
+         818 "I'm Worth It with Michele and Frangry (Misc)"
+         819 "Incorrect Music (Misc)"
+         820 "Irene Trudel (Misc)"
+         821 "The Long Way Home (Misc)"
+         822 "The Real Nitty Gritty (Misc)"
+         823 "Shrunken Planet (Misc)"
+         824 "Stop Hitting Yourself (Misc)"
+	 825 "Stuff You Should Know with Josh and Chuck (Misc)")
+
+CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE" \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
+clear
+case $CHOICE in
+        00)
+		echo "Wfmu Live Stream (Best Quality)"
+	    	url="http://wfmu.org/wfmu_aac.pls"
+		pkill -f $url || mpv "$url";;
+        01)
+		echo "Wfmu Live Stream (Next-Best Quality)"
+	    	url="http://wfmu.org/wfmu_mp3.pls"
+		pkill -f $url || mpv "$url";;
+        02)
+		echo "Wfmu Live Stream (32k Mono)"
+	    	url="http://wfmu.org/wfmu32.pls"
+		pkill -f $url || mpv "$url";;
+        03)
+		echo "Rock'n'Soul Radio"
+	    	url="https://wfmu.org/wfmu_rock.pls"
+		pkill -f $url || mpv "$url";;
+        04)
+		echo "Give the Drummer Radio"
+	    	url="https://wfmu.org/wfmu_drummer.pls"
+		pkill -f $url || mpv "$url";;
+        05)
+		echo "Sheena's Jungle Room"
+	    	url="https://wfmu.org/wfmu_sheena.pls"
+		pkill -f $url || mpv "$url";;
+        10)
+		echo "Wake'n'Bake (Mon to Fri)"
+	    	url="https://wfmu.org/archivefeed/mp3/WA.xml"
+		pkill -f $url || mpv "$url";;
+        11)
+		echo "Surface Noise (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/SN.xml"
+		pkill -f $url || mpv "$url";;
+        12)
+		echo "Three Chord Monte (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/TM.xml"
+		pkill -f $url || mpv "$url";;
+        13)
+		echo "Jim Price (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/JP.xml"
+		pkill -f $url || mpv "$url";;
+        14)
+		echo "Radio Raviolli (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/OB.xml"
+		pkill -f $url || mpv "$url";;
+        15)
+		echo "Techtonic (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/TD.xml"
+		pkill -f $url || mpv "$url";;
+        16)
+		echo "Do or DIY (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/PL.xml"
+		pkill -f $url || mpv "$url";;
+        17)
+		echo "The Blind Tourist (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/TX.xml"
+		pkill -f $url || mpv "$url";;
+        18)
+		echo "The Frow Show (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/JJ.xml"
+		pkill -f $url || mpv "$url";;
+        19)
+		echo "Zoe (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/ZO.xml"
+		pkill -f $url || mpv "$url";;
+        110)
+		echo "Polygot (Monday)"
+	    	url="https://wfmu.org/archivefeed/mp3/PX.xml"
+		pkill -f $url || mpv "$url";;
+        20)
+		echo "Garbage Time (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/GT.xml"
+		pkill -f $url || mpv "$url";;
+        21)
+		echo "Feelings (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/CM.xml"
+		pkill -f $url || mpv "$url";;
+        22)
+		echo "Spin Age Blasters (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/EH.xml"
+		pkill -f $url || mpv "$url";;
+        23)
+		echo "Music of Mind Control (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/MW.xml"
+		pkill -f $url || mpv "$url";;
+        24)
+		echo "Old Codger (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/OC.xml"
+		pkill -f $url || mpv "$url";;
+        25)
+		echo "Morricone Island (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/PE.xml"
+		pkill -f $url || mpv "$url";;
+        26)
+		echo "Ira (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/IK.xml"
+		pkill -f $url || mpv "$url";;
+        27)
+		echo "DotDash Radio (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/DW.xml"
+		pkill -f $url || mpv "$url";;
+        28)
+		echo "Travel Zone (Tuesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/CK.xml"
+		pkill -f $url || mpv "$url";;
+        30)
+		echo "Ken (Wednesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/KF.xml"
+		pkill -f $url || mpv "$url";;
+        31)
+		echo "The Duane Train (Wednesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/DH.xml"
+		pkill -f $url || mpv "$url";;
+        32)
+		echo "Scott Williams (Wednesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/SW.xml"
+		pkill -f $url || mpv "$url";;
+        33)
+		echo "The Fuzzy Glove Hour (Wednesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/SD.xml"
+		pkill -f $url || mpv "$url";;
+        34)
+		echo "Weekly World Blues (Wednesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/WW.xml"
+		pkill -f $url || mpv "$url";;
+        35)
+		echo "https://wfmu.org/archivefeed/mp3/HG.xml"
+	    	url="Honky Tonk Radio Girl (Wednesday)"
+		pkill -f $url || mpv "$url";;
+        36)
+		echo "Therese (Wednesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/TQ.xml"
+		pkill -f $url || mpv "$url";;
+        37)
+		echo "Nickel & Dime Radio (Wednesday)"
+	    	url="https://wfmu.org/archivefeed/mp3/ND.xml"
+		pkill -f $url || mpv "$url";;
+        40)
+		echo "This is the Modern World (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/LM.xml"
+		pkill -f $url || mpv "$url";;
+        41)
+		echo "Pseu's Thing with a Hook (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/HK.xml"
+		pkill -f $url || mpv "$url";;
+        42)
+		echo "Strength Through Failure (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/FR.xml"
+		pkill -f $url || mpv "$url";;
+        43)
+		echo "Mahogany (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/M4.xml"
+		pkill -f $url || mpv "$url";;
+        44)
+		echo "Miracle Nutrition (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/HA.xml"
+		pkill -f $url || mpv "$url";;
+        45)
+		echo "Sinner's Crossroads (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/CR.xml"
+		pkill -f $url || mpv "$url";;
+        46)
+		echo "Music to Spazz By (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/MS.xml"
+		pkill -f $url || mpv "$url";;
+        47)
+		echo "Mona After Midnight (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/M1.xml"
+		pkill -f $url || mpv "$url";;
+        48)
+		echo "Radio Activity (Thursday)"
+	    	url="https://wfmu.org/archivefeed/mp3/A1.xml"
+		pkill -f $url || mpv "$url";;
+        50)
+		echo "JA in the AM (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/JA.xml"
+		pkill -f $url || mpv "$url";;
+        51)
+		echo "Bryce (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/BK.xml"
+		pkill -f $url || mpv "$url";;
+        52)
+		echo "Sophisticated Boom Boom (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/CF.xml"
+		pkill -f $url || mpv "$url";;
+        53)
+		echo "Dance with Mr. Stanley (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/YN.xml"
+		pkill -f $url || mpv "$url";;
+        54)
+		echo "Put the Needle on the Record (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/BJ.xml"
+		pkill -f $url || mpv "$url";;
+        55)
+		echo "Downtown Soulville (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/SV.xml"
+		pkill -f $url || mpv "$url";;
+        56)
+		echo "New York Underground (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/NY.xml"
+		pkill -f $url || mpv "$url";;
+        57)
+		echo "Inflatable Squirrel Carcass (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/IS.xml"
+		pkill -f $url || mpv "$url";;
+        58)
+		echo "Sunrise Lamentations (Friday)"
+	    	url="https://wfmu.org/archivefeed/mp3/J1.xml"
+		pkill -f $url || mpv "$url";;
+        60)
+		echo "Bad Animals (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/B1.xml"
+		pkill -f $url || mpv "$url";;
+        61)
+		echo "Double-Dip Recess (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/UB.xml"
+		pkill -f $url || mpv "$url";;
+        62)
+		echo "Michael Shelley (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/SH.xml"
+		pkill -f $url || mpv "$url";;
+        63)
+		echo "Fool's Paradise (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/FP.xml"
+		pkill -f $url || mpv "$url";;
+        64)
+		echo "Todd-o-phonic Todd (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/TA.xml"
+		pkill -f $url || mpv "$url";;
+        65)
+		echo "Transpacific Sound Paradise (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/TP.xml"
+		pkill -f $url || mpv "$url";;
+        66)
+		echo "Martey McSorley (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/BY.xml"
+		pkill -f $url || mpv "$url";;
+        67)
+		echo "Darren (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/EI.xml"
+		pkill -f $url || mpv "$url";;
+        68)
+		echo "Currents (Saturday)"
+	    	url="https://wfmu.org/archivefeed/mp3/CV.xml"
+		pkill -f $url || mpv "$url";;
+        70)
+		echo "Serious Moonlight Sonatas (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/MJ.xml"
+		pkill -f $url || mpv "$url";;
+        71)
+		echo "Reggae Schoolroom (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/RS.xml"
+		pkill -f $url || mpv "$url";;
+        72)
+		echo "The Glen Jones Radio Proggramme (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/GJ.xml"
+		pkill -f $url || mpv "$url";;
+        73)
+		echo "Rock and Roller Derby (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/RO.xml"
+		pkill -f $url || mpv "$url";;
+        74)
+		echo "Radio Row (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/R1.xml"
+		pkill -f $url || mpv "$url";;
+        75)
+		echo "Daniel Blumin (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/DN.xml"
+		pkill -f $url || mpv "$url";;
+        76)
+		echo "Gaylord Fields (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/GF.xml"
+		pkill -f $url || mpv "$url";;
+        77)
+		echo "Smiling in Stereo (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/WX.xml"
+		pkill -f $url || mpv "$url";;
+        78)
+		echo "Spectrum Audio (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/SX.xml"
+		pkill -f $url || mpv "$url";;
+        79)
+		echo "Six Degrees (Sunday)"
+	    	url="https://wfmu.org/archivefeed/mp3/S6.xml"
+		pkill -f $url || mpv "$url";;
+        80)
+		echo "100% Whatever (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/MY.xml"
+		pkill -f $url || mpv "$url";;
+        82)
+		echo "A440/Stochastic Hit Parade (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/HP.xml"
+		pkill -f $url || mpv "$url";;
+        86)
+		echo "Are We There Yet? (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/TR.xml"
+		pkill -f $url || mpv "$url";;
+        88)
+		echo "Bed Time Stories (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/EL.xml"
+		pkill -f $url || mpv "$url";;
+        812)
+		echo "Burn it Down (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/NK.xml"
+		pkill -f $url || mpv "$url";;
+        813)
+		echo "Depravity's Rainbow with Therese and Mike (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/CL.xml"
+		pkill -f $url || mpv "$url";;
+        815)
+		echo "Destination: OUT (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/DO.xml"
+		pkill -f $url || mpv "$url";;
+        816)
+		echo "The Evan 'Funk' Davies Show  (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/ED.xml"
+		pkill -f $url || mpv "$url";;
+        817)
+		echo "I'm Sorry I Had To Kill That Guy (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/LP.xml"
+		pkill -f $url || mpv "$url";;
+        818)
+		echo "I'm Worth It with Michele and Frangry (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/IW.xml"
+		pkill -f $url || mpv "$url";;
+        819)
+		echo "Incorrect Music (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/IM.xml"
+		pkill -f $url || mpv "$url";;
+        820)
+		echo "Irene Trudel (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/IT.xml"
+		pkill -f $url || mpv "$url";;
+        821)
+		echo "The Long Way Home (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/LO.xml"
+		pkill -f $url || mpv "$url";;
+        822)
+		echo "The Real Nitty Gritty (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/RG.xml"
+		pkill -f $url || mpv "$url";;
+        823)
+		echo "Shrunken Planet (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/SP.xml"
+		pkill -f $url || mpv "$url";;
+        824)
+		echo "Stop Hitting Yourself (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/HY.xml"
+		pkill -f $url || mpv "$url";;
+        825)
+		echo "Stuff You Should Know with Josh and Chuck (Misc)"
+	    	url="https://wfmu.org/archivefeed/mp3/YS.xml"
+		pkill -f $url || mpv "$url";;
+esac
