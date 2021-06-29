@@ -1,16 +1,6 @@
-
-
-
-
 # wfmuplayer
-6
 Two methods to play wfmu streams and archives in the terminal. First one needs dialog and mpv. The second fzf, mpv, and the above wfmustrams file (will become more complete over time). Both of these have next to no original scripting. The files contain links to the original code. All thanks to them, and especially Philip Colllier radio AB9IL who volunteered his script when he saw the other player. And thanks to WFMU!
-7
-​
-8
+
 To use, clone/download the directory and place wfmudialogplayer and wfmufzfplayer in your $PATH. Make them executable. Place wfmustreams in your home dirctory.
-9
 
-
-https://user-images.githubusercontent.com/58973555/123757914-c64c0e80-d901-11eb-93dc-19c6ba4ac7b6.mp4
-
+https://user-images.githubusercontent.com/58973555/123758374-3195e080-d902-11eb-9fba-244a216a112f.mp4
