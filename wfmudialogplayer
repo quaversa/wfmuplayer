@@ -2,7 +2,7 @@
 
 #This is a cut and paste job.. couldn't have happened without bugswriter. Modify and use any which way. See https://www.youtube.com/watch?v=0MuXiRQO1ck for the exact code stolen.
 
-#Your mpv keybinds apply. By default pressing "Enter" once playing will go to the show's previous week's archive if it exists. Needs mpv and dialog to work. Other than that all the work is done by WFMU!
+#Your mpv keybinds apply. By default pressing "Enter" once playing will go to the show's previous week's archive (if it exists). Needs mpv and dialog to work. Other than that all the work is done by WFMU!
 
 HEIGHT=25
 WIDTH=60
