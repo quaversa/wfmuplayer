@@ -10,6 +10,7 @@
 # All credit goes to radio AB9IL. Above is the original Copywright. See how I modified almost nothing from the original script at https://github.com/AB9IL/Skywave-Linux-v4/blob/master/vlc-playlist.
 
 # Needs mpv and fzf to work and for the script to point to the wfmustreams file. Other than that all the work is done by WFMU!
+# Your mpv keybinds apply. By default pressing "Enter" once playing will go to the show's previous week's archive (if it exists).
 
 STREAMS_FILE=~/wfmustreams
 OPTION1="1) Start WFMU"
