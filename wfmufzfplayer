@@ -7,9 +7,11 @@
 # (at your option) any later version. There is NO warranty; not even for
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-# All credit goes to radio AB9IL. Above is the original Copywright. See how I modified almost nothing from the original script at https://github.com/AB9IL/Skywave-Linux-v4/blob/master/vlc-playlist.
-
-# Needs mpv and fzf to work and for the script to point to the wfmustreams file. Other than that all the work is done by WFMU!
+# All credit goes to radio AB9IL. Above is the original Copywright. 
+# See how I modified almost nothing from the original script at 
+# https://github.com/AB9IL/Skywave-Linux-v4/blob/master/vlc-playlist.
+# Needs mpv and fzf to work and for the script to point to the wfmustreams file. 
+# Other than that all the work is done by WFMU!
 
 trap wfmu SIGINT
 
