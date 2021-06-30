@@ -8,7 +8,7 @@
 trap wfmufzfplayer SIGINT
 
 LIVESTREAM="http://wfmu.org/wfmu_aac.pls"
-STREAMS_FILE=~/.wfmustreams
+STREAMS_FILE=~/wfmustreams
 OPTION0="0) Play WFMU Live Stream"
 OPTION1="1) Play WFMU Archive Streams"
 OPTION2="2) Edit Stream List"
