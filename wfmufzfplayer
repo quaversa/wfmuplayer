@@ -1,0 +1,103 @@
+#!/bin/bash
+
+# All credit goes to radio AB9IL. See how I modified almost nothing from the original 
+# script at https://github.com/AB9IL/Skywave-Linux-v4/blob/master/vlc-playlist.
+# This needs mpv and fzf to work. Other than that all the real work is done by WFMU!
+
+trap wfmufzfplayer SIGINT
+
+LIVESTREAM="http://wfmu.org/wfmu_aac.pls"
+STREAMS_FILE=~/.cache/wfmufzfplayer/wfmustreams
+BMKS_FILE=~/.cache/wfmufzfplayer/wfmubookmarks
+OPTION0="0) Play WFMU live stream"
+OPTION1="1) Play WFMU archive streams"
+OPTION2="2) Play bookmarked streams"
+OPTION3="3) Edit streams/bookmarks"
+OPTIONS="$OPTION0\n$OPTION1\n$OPTION2\n$OPTION3"
+FZF_COMMAND1='fzf --cycle --margin 1,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
+FZF_COMMAND2='fzf --cycle --margin 1,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
+FZF_COMMAND3="$EDITOR -o $STREAMS_FILE $BMKS_FILE"
+MPV="mpv --term-osd=force --msg-level=ffmpeg/demuxer=no,cplayer=no,display-tags=v,display-tags=v"
+
+# interface based on commandline arguments
+case "$1" in
+    *)
+        COMMAND1=$FZF_COMMAND1
+        COMMAND2=$FZF_COMMAND2
+        COMMAND3=$FZF_COMMAND3
+    ;;
+esac
+
+start_player(){
+stop_player
+echo -e 
+echo -e 
+echo -e "    ...connecting to "$CHOICE
+$MPV $URL
+    >/dev/null 2>&1 &
+exit 0
+}
+
+stop_player(){
+echo -e 
+echo -e "                            *******************************"
+echo -e "                            🐕...w...o...o...f...m...u...🐮"
+echo -e "                            *******************************"
+echo -e 
+echo -n "                  archive playlists at http://www.wfmu.org/playlists/" 
+echo -n $URL | awk -F'[=.x]' '{print $2}' | cut -d '/' -f 4
+echo -e "                   👓 ******************************************** 👓"
+echo -e 
+echo -e "                           enter to play prior week's archive"
+echo -e "                                ctrl-c to search again"
+echo -e "                                      q to quit"
+
+killall -9 mpv > /dev/null 2>&1
+}
+
+# select option from second menu instance
+SELECTED="$(echo -e "$OPTIONS" | $COMMAND1 )"
+
+case $SELECTED in
+  $OPTION0)
+echo -e
+echo -e "                            *******************************"
+echo -e "                            🐕...w...o...o...f...m...u...🐮"
+echo -e "                            *******************************"
+echo -e 
+echo -e "                                Ctrl-c to search again" 
+echo -e "                                      q to quit"
+echo -e
+    $MPV $LIVESTREAM
+    ;;
+  $OPTION1)
+    readarray STREAMS < $STREAMS_FILE
+    CHOICE="$(echo "${STREAMS[@]}" | awk -F \" '{print $2}' | $COMMAND2 )"
+    [[ -z "$CHOICE" ]] && echo "No selection..." && exit 1
+    # find the correct stream url
+    i=0
+    while [ $i -lt ${#STREAMS[@]} ]; do
+        ITEM="$(echo "${STREAMS[i]}" | awk -F \" '{print $2}')"
+        [[ "$ITEM" == "$CHOICE" ]] && URL="$(echo "${STREAMS[i]}" | \
+            awk -F \" '{print $1}'| sed 's/^ //g')" && start_player
+        ((i++))
+    done
+    ;;
+  $OPTION2)
+    readarray STREAMS < $BMKS_FILE
+    CHOICE="$(echo "${STREAMS[@]}" | awk -F \" '{print $2}' | $COMMAND2 )"
+    [[ -z "$CHOICE" ]] && echo "No selection..." && exit 1
+    # find the correct stream url
+    i=0
+    while [ $i -lt ${#STREAMS[@]} ]; do
+        ITEM="$(echo "${STREAMS[i]}" | awk -F \" '{print $2}')"
+        [[ "$ITEM" == "$CHOICE" ]] && URL="$(echo "${STREAMS[i]}" | \
+            awk -F \" '{print $1}'| sed 's/^ //g')" && start_player
+        ((i++))
+    done
+    ;;
+  $OPTION3)
+      # edit the list of stream/fav urls
+      $COMMAND3
+    ;;
+esac
