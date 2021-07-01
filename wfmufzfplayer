@@ -7,8 +7,8 @@
 trap wfmufzfplayer SIGINT
 
 LIVESTREAM="http://wfmu.org/wfmu_aac.pls"
-STREAMS_FILE=~/.cache/wfmufzfplayer/wfmustreams
-BMKS_FILE=~/.cache/wfmufzfplayer/wfmubookmarks
+STREAMS_FILE=~/.cache/wfmuplayer/wfmustreams
+BMKS_FILE=~/.cache/wfmuplayer/wfmubookmarks
 OPTION0="0) Play WFMU live stream"
 OPTION1="1) Play WFMU archive streams"
 OPTION2="2) Play bookmarked streams"
