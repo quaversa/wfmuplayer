@@ -5,7 +5,7 @@ Two methods to play wfmu streams and archives in the terminal. First one needs d
 
 Both of these have next to no original code. See files for links to the original scripts. All thanks to them, especially radio AB9IL who volunteered his fzf script, and thanks to WFMU!
 
-To use, clone/download the directory, place wfmudialogplayer and wfmufzfplayer in your $PATH, make them executable and drop the wfmufzfplayer folder into home/user/.cache/
+To use, clone/download the directory, place wfmudialogplayer and wfmufzfplayer in your $PATH, make them executable and drop the wfmuplayer folder into home/user/.cache/
 
 https://user-images.githubusercontent.com/58973555/124056753-a6cff580-da69-11eb-979e-cb86f7646019.mp4
 
