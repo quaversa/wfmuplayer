@@ -12,12 +12,13 @@ BMKS_FILE=~/.cache/wfmuplayer/wfmubookmarks
 OPTION0="0) Play WFMU live stream"
 OPTION1="1) Play WFMU archive streams"
 OPTION2="2) Play bookmarked streams"
-OPTION3="3) Edit streams/bookmarks"
+OPTION3="3) Edit bookmarks/streams"
+OPTION4="4) Stop Streaming"
 OPTIONS="$OPTION0\n$OPTION1\n$OPTION2\n$OPTION3"
-FZF_COMMAND1='fzf --cycle --margin 1,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
-FZF_COMMAND2='fzf --cycle --margin 1,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
+FZF_COMMAND1='fzf --cycle --margin 2,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
+FZF_COMMAND2='fzf --cycle --margin 2,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
 FZF_COMMAND3="$EDITOR -o $STREAMS_FILE $BMKS_FILE"
-MPV="mpv --term-osd=force --msg-level=ffmpeg/demuxer=no,cplayer=no,display-tags=v,display-tags=v"
+MPV="mpv --term-osd=force --msg-level=ffmpeg/demuxer=no,cplayer=no,display-tags=v"
 
 # interface based on commandline arguments
 case "$1" in
@@ -34,23 +35,24 @@ echo -e
 echo -e 
 echo -e "    ...connecting to "$CHOICE
 $MPV $URL
-    >/dev/null 2>&1 &
+#    >/dev/null 2>&1 &
 exit 0
 }
 
 stop_player(){
-echo -e 
-echo -e "                            *******************************"
-echo -e "                            🐕...w...o...o...f...m...u...🐮"
-echo -e "                            *******************************"
-echo -e 
+echo  
+echo  "                            *******************************"
+echo  "                            🐕...w...o...o...f...m...u...🐮"
+echo  "                            *******************************"
+echo  
 echo -n "                  archive playlists at http://www.wfmu.org/playlists/" 
 echo -n $URL | awk -F'[=.x]' '{print $2}' | cut -d '/' -f 4
-echo -e "                   👓 ******************************************** 👓"
-echo -e 
-echo -e "                           enter to play prior week's archive"
-echo -e "                                ctrl-c to search again"
-echo -e "                                      q to quit"
+echo  "                   👓 ******************************************** 👓"
+echo  
+echo  "                           enter to play prior week's archive"
+echo  "                               ctrl-c to return to menu" 
+echo  "                                    space to pause"
+echo  "                                      q to quit"
 
 killall -9 mpv > /dev/null 2>&1
 }
@@ -60,14 +62,17 @@ SELECTED="$(echo -e "$OPTIONS" | $COMMAND1 )"
 
 case $SELECTED in
   $OPTION0)
-echo -e
-echo -e "                            *******************************"
-echo -e "                            🐕...w...o...o...f...m...u...🐮"
-echo -e "                            *******************************"
-echo -e 
-echo -e "                                Ctrl-c to search again" 
-echo -e "                                      q to quit"
-echo -e
+echo 
+echo  "                            *******************************"
+echo  "                            🐕...w...o...o...f...m...u...🐮"
+echo  "                            *******************************"
+echo  
+echo  "                               ctrl-c to return to menu" 
+echo  "                                    space to pause"
+echo  "                                      q to quit"
+echo 
+
+    killall -9 mpv > /dev/null 2>&1
     $MPV $LIVESTREAM
     ;;
   $OPTION1)
@@ -97,7 +102,7 @@ echo -e
     done
     ;;
   $OPTION3)
-      # edit the list of stream/fav urls
+      # edit stream/fav urls
       $COMMAND3
     ;;
 esac
