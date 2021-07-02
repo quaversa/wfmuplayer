@@ -1,4 +1,6 @@
-https://user-images.githubusercontent.com/58973555/124056753-a6cff580-da69-11eb-979e-cb86f7646019.mp4
+
+
+https://user-images.githubusercontent.com/58973555/124240423-16271180-db5e-11eb-85cc-277ec8414c36.mp4
 
 # wfmuplayer
 Two methods to play wfmu streams and archives in the terminal. First one needs dialog and mpv. The second fzf, mpv, and the wfmustrams file. 
