@@ -40,6 +40,7 @@ exit 0
 }
 
 stop_player(){
+clear -x
 echo  
 echo  "                            *******************************"
 echo  "                            🐕...w...o...o...f...m...u...🐮"
@@ -62,6 +63,7 @@ SELECTED="$(echo -e "$OPTIONS" | $COMMAND1 )"
 
 case $SELECTED in
   $OPTION0)
+clear -x
 echo 
 echo  "                            *******************************"
 echo  "                            🐕...w...o...o...f...m...u...🐮"
