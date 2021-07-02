@@ -13,7 +13,6 @@ OPTION0="0) Play WFMU live stream"
 OPTION1="1) Play WFMU archive streams"
 OPTION2="2) Play bookmarked streams"
 OPTION3="3) Edit bookmarks/streams"
-OPTION4="4) Stop Streaming"
 OPTIONS="$OPTION0\n$OPTION1\n$OPTION2\n$OPTION3"
 FZF_COMMAND1='fzf --cycle --margin 2,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
 FZF_COMMAND2='fzf --cycle --margin 2,30% --pointer=>> --layout=reverse --header=🐕.w.f.m.u...a.r.c.h.i.v.e.s.🐮'
