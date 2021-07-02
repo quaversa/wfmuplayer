@@ -16,8 +16,9 @@ OPTION3="3) Edit bookmarks/streams"
 OPTION4="4) Stop Streaming"
 OPTIONS="$OPTION0\n$OPTION1\n$OPTION2\n$OPTION3"
 FZF_COMMAND1='fzf --cycle --margin 2,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
-FZF_COMMAND2='fzf --cycle --margin 2,30% --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
-FZF_COMMAND3="$EDITOR -o $STREAMS_FILE $BMKS_FILE"
+FZF_COMMAND2='fzf --cycle --margin 2,30% --pointer=>> --layout=reverse --header=🐕.w.f.m.u...a.r.c.h.i.v.e.s.🐮'
+FZF_COMMAND3='fzf --cycle --margin 2,30% --pointer=>> --layout=reverse --header=🐕.w..f..m..u...f..a..v..s.🐮'
+FZF_COMMAND4="$EDITOR -o $STREAMS_FILE $BMKS_FILE"
 MPV="mpv --term-osd=force --msg-level=ffmpeg/demuxer=no,cplayer=no,display-tags=v"
 
 # interface based on commandline arguments
@@ -26,6 +27,7 @@ case "$1" in
         COMMAND1=$FZF_COMMAND1
         COMMAND2=$FZF_COMMAND2
         COMMAND3=$FZF_COMMAND3
+        COMMAND4=$FZF_COMMAND4
     ;;
 esac
 
@@ -92,7 +94,7 @@ echo
     ;;
   $OPTION2)
     readarray STREAMS < $BMKS_FILE
-    CHOICE="$(echo "${STREAMS[@]}" | awk -F \" '{print $2}' | $COMMAND2 )"
+    CHOICE="$(echo "${STREAMS[@]}" | awk -F \" '{print $2}' | $COMMAND3 )"
     [[ -z "$CHOICE" ]] && echo "No selection..." && exit 1
     # find the correct stream url
     i=0
@@ -105,6 +107,6 @@ echo
     ;;
   $OPTION3)
       # edit stream/fav urls
-      $COMMAND3
+      $COMMAND4
     ;;
 esac
