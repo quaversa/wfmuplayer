@@ -6,4 +6,4 @@ A way to play wfmu streams and archives in a linux terminal. Needs fzf and mpv t
 
 The dead links in the archives will be nixed over time.
 
-To use, clone/download the directory, place wfmufzfplayer in your $PATH and make them executable. Then drop the wfmuplayer folder in home/user/.cache/..
+To use, clone/download the directory, place wfmufzfplayer in your $PATH and make it executable. Then drop the wfmuplayer folder in home/user/.cache/..
