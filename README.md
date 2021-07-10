@@ -1,5 +1,7 @@
 
-https://user-images.githubusercontent.com/58973555/124341047-0ca0b680-dbfd-11eb-993f-10d84c792428.mp4
+
+https://user-images.githubusercontent.com/58973555/125148853-86462080-e178-11eb-86c0-3e74bf72d5c4.mp4
+
 
 # wfmuplayer
 A way to play wfmu streams and archives in a linux terminal. Needs fzf and mpv to work. It has next to no original code. See the script for links to the original maker radio AB9IL who volunteered up his script when he saw my initial go at it. And thanks to WFMU.
