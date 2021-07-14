@@ -16,13 +16,9 @@ OPTION3="3) Edit bookmarks/streams"
 OPTIONS="$OPTION0\n$OPTION1\n$OPTION2\n$OPTION3"
 FZF_COMMAND1='fzf --cycle --pointer=>> --layout=reverse --header=🐕...w...o...o...f...m...u...🐮'
 FZF_COMMAND2='fzf --cycle --pointer=>> --layout=reverse --header=🐕.w.f.m.u...a.r.c.h.i.v.e.s.🐮'
-FZF_COMMAND3='fzf --cycle --pointer=>> --layout=reverse --header=🐕.w..f..m..u...f..a..v..s.🐮'
+FZF_COMMAND3='fzf --cycle --pointer=>> --layout=reverse --header=🐕..w..f..m..u...f..a..v..s..🐮'
 FZF_COMMAND4="$EDITOR -o $STREAMS_FILE $BMKS_FILE"
-
-# Choose different verbosity amounts on terminal
-MPV="mpv --term-osd=force --msg-level=ffmpeg/demuxer=no,cplayer=no,demux=no,display-tags=v" # display-tags & statusline
-#MPV="mpv --term-osd=force --msg-level=ffmpeg/demuxer=no,cplayer=no,demux=no,display-tags=no" # statusline only
-#MPV="mpv --term-osd=force --msg-level=all=no" # quiet
+MPV="mpv --term-osd=force --msg-level=ffmpeg/demuxer=no,cplayer=no,demux=no,display-tags=v"
 
 # interface based on commandline arguments
 case "$1" in
@@ -41,9 +37,7 @@ echo "  connecting to.. "
 echo "  "$CHOICE | cut -d '(' -f 1
 echo  
 $MPV $URL
-#$MPV $URL | sed 's/display-tags:/>/'
 
-#    >/dev/null 2>&1 &
 exit 0
 }
 
@@ -57,7 +51,7 @@ echo  "  enter prior week / ctrl-c menu"
 echo  "       space pause / q quit"
 echo  "  👓 ************************* 👓"
 echo -n "  http://www.wfmu.org/playlists/" 
-echo -n $URL | awk -F'[=.x]' '{print $2}' | cut -d '/' -f 4
+echo -n $URL | sed 's/.xml//' | rev | cut -c1-2 | rev
 echo  "  👓 ************************* 👓"
 
 killall -9 mpv > /dev/null 2>&1
